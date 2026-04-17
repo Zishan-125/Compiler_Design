@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  ⚙️ Lexical Analyzer in Action — Tokenizing Source Code into Meaningful Units
+  ⚙️ Lexical Analyzer in Action (Tokenizing Source Code into Meaningful Units)
 </p>
 
 ---
