@@ -20,9 +20,9 @@
 
 ## 📌 Overview
 
-This project implements a **Lexical Analyzer (Tokenizer)**, the first phase of a compiler using Python and Regular Expressions.
+This project implements a **Lexical Analyzer (Tokenizer)** — the first phase of a compiler — using Python and Regular Expressions.
 
-It processes raw source code and converts it into structured **tokens**, enabling further stages like parsing and semantic analysis.
+It converts raw source code into structured **tokens**, forming the foundation for further stages like parsing and semantic analysis.
 
 ---
 
@@ -35,79 +35,102 @@ It processes raw source code and converts it into structured **tokens**, enablin
 
 ---
 
-## 🧠 What is Lexical Analysis?
+## 🧠 Beginner-Friendly Explanation (A → Z Guide)
 
-Lexical Analysis scans source code and transforms it into token sequences.
+If someone is completely new to compiler design, this section explains everything step-by-step.
 
-### Example:
+### 🔹 Step 1: What is Input?
 
-```c id="yfnptp"
-int sum = 10;
-```
+A simple string of code:
 
-⬇️ Output:
-
-| Token | Type        |
-| ----- | ----------- |
-| int   | KEYWORD     |
-| sum   | IDENTIFIER  |
-| =     | OPERATOR    |
-| 10    | NUMBER      |
-| ;     | PUNCTUATION |
-
----
-
-## 🧩 Core Implementation
-
-### 🔹 Token Patterns
-
-```python id="r9q6pq"
-token_patterns = [
-    ('KEYWORD',    r'\b(int|float|and|or|if|else|while)\b'),
-    ('NUMBER',     r'\b\d+\b'),
-    ('IDENTIFIER', r'\b[a-zA-Z_][a-zA-Z0-9_]*\b'),
-    ('OPERATOR',   r'[=\+\-\*/]'),
-    ('PUNCTUATION',r';'),
-    ('WHITESPACE', r'\s+'),
-]
+```c
+int sum=10;
 ```
 
 ---
 
-### 🔹 Master Pattern
+### 🔹 Step 2: What is the Goal?
 
-```python id="vy56pw"
+Break this into meaningful pieces:
+
+👉 `int`, `sum`, `=`, `10`, `;`
+
+Each piece = **Token**
+
+---
+
+### 🔹 Step 3: How Does the Code Recognize Tokens?
+
+Using **Regular Expressions (Regex)**:
+
+```python
+('KEYWORD', r'\b(int|float|and|or|if|else|while)\b')
+```
+
+✔ This means:
+
+* If a word matches `int`, `float`, etc → it is a **KEYWORD**
+
+---
+
+### 🔹 Step 4: How All Rules Work Together?
+
+```python
 master_pattern = '|'.join(f'(?P<{name}>{pattern})' for name, pattern in token_patterns)
 ```
 
-✔ Combines all token rules into one optimized regex
+👉 This line:
+
+* Combines all rules into **one powerful regex engine**
+* Uses **named groups** to identify token type instantly
 
 ---
 
-### 🔹 Tokenization Logic
+### 🔹 Step 5: How Scanning Happens?
 
-```python id="9p2rd7"
+```python
 for match in re.finditer(master_pattern, input_string):
 ```
 
-Steps:
+✔ The program:
 
-1. Scan input sequentially
-2. Match patterns
-3. Identify token type
-4. Ignore whitespace
-5. Output structured result
+1. Scans left → right
+2. Matches patterns
+3. Detects token type
+4. Extracts value
 
 ---
 
-## 🔄 Workflow
+### 🔹 Step 6: Why Ignore Whitespace?
 
-```mermaid id="bzbk2l"
+```python
+if token_type != 'WHITESPACE':
+```
+
+👉 Spaces are not meaningful tokens
+👉 So they are skipped
+
+---
+
+### 🔹 Step 7: Final Output
+
+```python
+print(f"{token_value:<15} | {token_type:<15}")
+```
+
+✔ Clean table format for readability
+
+---
+
+## 🔄 Complete Workflow (Visual)
+
+```mermaid
 flowchart TD
-A[Input Source Code] --> B[Regex Matching]
+A[Input Code] --> B[Regex Matching]
 B --> C[Token Detection]
-C --> D[Classification]
-D --> E[Output Tokens]
+C --> D[Ignore Spaces]
+D --> E[Classification]
+E --> F[Formatted Output]
 ```
 
 ---
@@ -116,7 +139,7 @@ D --> E[Output Tokens]
 
 ### 🔹 Input
 
-```text id="h6xv3g"
+```text
 int sum=10; and a+b= 20;
 ```
 
@@ -139,6 +162,18 @@ int sum=10; and a+b= 20;
 
 ---
 
+## 🧠 Debugger’s Insight (Expert Perspective)
+
+From a **10+ years experienced tutor & debugging standpoint**:
+
+* ✔ Regex order matters (Keyword before Identifier)
+* ✔ Named groups simplify classification
+* ✔ `finditer()` ensures sequential scanning
+* ✔ Ignoring whitespace improves output clarity
+* ✔ Modular token patterns make system scalable
+
+---
+
 ## 🛠️ Tech Stack
 
 * **Language:** Python
@@ -148,18 +183,9 @@ int sum=10; and a+b= 20;
 
 ---
 
-## 💡 Key Strengths
-
-* ✔ Efficient pattern matching
-* ✔ Clean and modular logic
-* ✔ Strong foundation in compiler design
-* ✔ Easily extendable for parser integration
-
----
-
 ## 🚀 How to Run
 
-```bash id="0hkgny"
+```bash
 python Task_1.py
 ```
 
@@ -176,10 +202,10 @@ python Task_1.py
 
 ## ⭐ Final Impression
 
-This project demonstrates a solid understanding of:
+This project demonstrates:
 
-* Compiler fundamentals
-* Pattern matching techniques
-* Language processing systems
+* Strong understanding of compiler fundamentals
+* Practical implementation of lexical analysis
+* Clean, scalable and debuggable design
 
-A strong stepping stone toward building **full compiler architectures**.
+👉 Designed in a way that **even beginners can understand end-to-end execution**, while still reflecting **professional engineering standards**.
