@@ -20,7 +20,7 @@
 
 ## 📌 Overview
 
-This project implements a **Lexical Analyzer (Tokenizer)** — the first phase of a compiler — using Python and Regular Expressions.
+This project implements a **Lexical Analyzer (Tokenizer)** the first phase of a compiler using Python and Regular Expressions.
 
 It converts raw source code into structured **tokens**, forming the foundation for further stages like parsing and semantic analysis.
 
@@ -35,7 +35,7 @@ It converts raw source code into structured **tokens**, forming the foundation f
 
 ---
 
-## 🧠 Beginner-Friendly A → Z Explanation
+## 🧠 A → Z Explanation
 
 ### 🔹 Input Code
 
@@ -107,13 +107,29 @@ sequenceDiagram
 ## 🔄 Internal Code Execution Flow
 
 ```mermaid
-flowchart TD
-    A["input_string"] --> B["re.finditer()"]
-    B --> C[Match Found]
-    C --> D{Check Token Type}
-    D -->|Whitespace| E[Ignore]
-    D -->|Valid Token| F[Extract Value]
-    F --> G["Print Token + Type"]
+sequenceDiagram
+    participant U as User Input
+    participant R as Regex Engine
+    participant M as Matcher Loop
+    participant O as Output
+
+    U->>R: int sum=10;
+
+    R->>M: Apply Master Pattern
+    R->>M: Match "int"
+    M->>O: KEYWORD
+
+    R->>M: Match "sum"
+    M->>O: IDENTIFIER
+
+    R->>M: Match "="
+    M->>O: OPERATOR
+
+    R->>M: Match "10"
+    M->>O: NUMBER
+
+    R->>M: Match ";"
+    M->>O: PUNCTUATION
 ```
 
 ---
@@ -215,11 +231,3 @@ python Task_1.py
 🔗 https://www.linkedin.com/in/abdullah-al-mamun-zishan-606550282
 
 ---
-
-## ⭐ Final Impression
-
-✔ Beginner-friendly
-✔ Visually explained
-✔ Technically solid
-
-👉 Demonstrates both **concept clarity + implementation depth**, making it ideal for **academic + professional showcase**.
