@@ -20,9 +20,9 @@
 
 ## 📌 Overview
 
-This project implements a **Lexical Analyzer (Tokenizer)** the first phase of a compiler using Python and Regular Expressions.
+This project implements a **Lexical Analyzer (Tokenizer)** — the first phase of a compiler — using Python and Regular Expressions.
 
-It converts raw source code into structured **tokens**, forming the foundation for parsing and further compilation stages.
+It converts raw source code into structured **tokens**, forming the foundation for further stages like parsing and semantic analysis.
 
 ---
 
@@ -30,134 +30,140 @@ It converts raw source code into structured **tokens**, forming the foundation f
 
 * 🔍 Converts source code → tokens
 * 🧠 Identifies keywords, identifiers, operators, numbers
-* ⚙️ Built using efficient regex-based pattern matching
-* 📚 Core foundation of compiler design
+* ⚙️ Regex-powered efficient scanning
+* 📚 Core compiler foundation
 
 ---
 
-## 🧠 Beginner-Friendly Explanation (A → Z Guide)
+## 🧠 Beginner-Friendly A → Z Explanation
 
-### Input Example:
+### 🔹 Input Code
 
 ```c
 int sum=10;
 ```
 
-### Output:
+---
 
-`int | sum | = | 10 | ;`
+### 🔹 Step-by-Step Transformation
+
+#### 🟢 Step 1: Raw Input
+
+```
+int sum=10;
+```
+
+#### 🟡 Step 2: Regex Scanning Starts
+
+```
+[int] [ ] [sum] [=] [10] [;]
+```
+
+#### 🔵 Step 3: Pattern Matching
+
+```
+int  → KEYWORD  
+sum  → IDENTIFIER  
+=    → OPERATOR  
+10   → NUMBER  
+;    → PUNCTUATION  
+```
+
+#### 🟣 Step 4: Final Output Table
+
+```
+Token        | Type
+-------------------------
+int          | KEYWORD
+sum          | IDENTIFIER
+=            | OPERATOR
+10           | NUMBER
+;            | PUNCTUATION
+```
 
 ---
 
-## 🎬 Step-by-Step Code Flow (Animated Understanding)
+## 🎬 Code Flow Animation (Step-by-Step)
 
 ```mermaid
 sequenceDiagram
-    participant U as User Input
-    participant R as Regex Engine
-    participant M as Matcher Loop
-    participant O as Output
+    participant User
+    participant Input
+    participant RegexEngine
+    participant Tokenizer
+    participant Output
 
-    U->>R: "int sum=10;"
-    Note right of R: Apply Master Pattern
-    R->>M: Match "int"
-    M->>O: KEYWORD
-
-    R->>M: Match "sum"
-    M->>O: IDENTIFIER
-
-    R->>M: Match "="
-    M->>O: OPERATOR
-
-    R->>M: Match "10"
-    M->>O: NUMBER
-
-    R->>M: Match ";"
-    M->>O: PUNCTUATION
+    User->>Input: Enter source code
+    Input->>RegexEngine: Send raw string
+    RegexEngine->>Tokenizer: Match patterns
+    Tokenizer->>Tokenizer: Identify token type
+    Tokenizer->>Tokenizer: Skip whitespace
+    Tokenizer->>Output: Send structured tokens
+    Output->>User: Display result
 ```
 
 ---
 
-## 🔍 Internal Code Flow (Step-by-Step)
-
-### 1️⃣ Define Token Rules
-
-```python
-token_patterns = [...]
-```
-
----
-
-### 2️⃣ Combine into Master Pattern
-
-```python
-master_pattern = '|'.join(...)
-```
-
----
-
-### 3️⃣ Start Scanning
-
-```python
-re.finditer(master_pattern, input_string)
-```
-
----
-
-### 4️⃣ Identify Token Type
-
-```python
-match.lastgroup
-```
-
----
-
-### 5️⃣ Extract Token Value
-
-```python
-match.group(token_type)
-```
-
----
-
-### 6️⃣ Ignore Whitespace
-
-```python
-if token_type != 'WHITESPACE'
-```
-
----
-
-### 7️⃣ Print Output
-
-```python
-print(token, type)
-```
-
----
-
-## 🔄 Workflow Diagram
+## 🔄 Internal Code Execution Flow
 
 ```mermaid
 flowchart TD
-A[Input Code] --> B[Regex Engine]
-B --> C[Pattern Matching]
-C --> D[Token Extraction]
-D --> E[Ignore Spaces]
-E --> F[Final Output Table]
+A[input_string] --> B[re.finditer()]
+B --> C[Match Found]
+C --> D{Check Token Type}
+D -->|Whitespace| E[Ignore]
+D -->|Valid Token| F[Extract Value]
+F --> G[Print Token + Type]
 ```
+
+---
+
+## 🧩 Core Implementation
+
+### 🔹 Token Patterns
+
+```python
+token_patterns = [
+    ('KEYWORD',    r'\b(int|float|and|or|if|else|while)\b'),
+    ('NUMBER',     r'\b\d+\b'),
+    ('IDENTIFIER', r'\b[a-zA-Z_][a-zA-Z0-9_]*\b'),
+    ('OPERATOR',   r'[=\+\-\*/]'),
+    ('PUNCTUATION',r';'),
+    ('WHITESPACE', r'\s+'),
+]
+```
+
+---
+
+### 🔹 Master Pattern
+
+```python
+master_pattern = '|'.join(f'(?P<{name}>{pattern})' for name, pattern in token_patterns)
+```
+
+✔ Combines all token rules into one optimized regex engine
+
+---
+
+### 🔹 Tokenization Logic
+
+```python
+for match in re.finditer(master_pattern, input_string):
+```
+
+✔ Scans → Matches → Classifies → Outputs
 
 ---
 
 ## 🧪 Example Execution
 
-### Input
+### 🔹 Input
 
-```text
+```
 int sum=10; and a+b= 20;
 ```
 
-### Output
+### 🔹 Output
 
 | Token | Type        |
 | ----- | ----------- |
@@ -178,10 +184,10 @@ int sum=10; and a+b= 20;
 
 ## 🧠 Debugger’s Insight (Expert Level)
 
-* ✔ Regex priority matters (Keyword before Identifier)
-* ✔ Named groups improve readability & debugging
+* ✔ Regex priority ensures correct classification
+* ✔ Named groups (`?P<>`) improve readability
 * ✔ `finditer()` ensures sequential token detection
-* ✔ System is easily extendable
+* ✔ Clean separation of logic improves scalability
 
 ---
 
@@ -193,7 +199,7 @@ int sum=10; and a+b= 20;
 
 ---
 
-## 🚀 Run the Code
+## 🚀 Run
 
 ```bash
 python Task_1.py
@@ -206,16 +212,14 @@ python Task_1.py
 **Abdullah Al Mamun Zishan**
 🎓 CSE, Feni University
 
-🔗 LinkedIn: https://www.linkedin.com/in/abdullah-al-mamun-zishan-606550282
+🔗 https://www.linkedin.com/in/abdullah-al-mamun-zishan-606550282
 
 ---
 
 ## ⭐ Final Impression
 
-This project is designed to:
+✔ Beginner-friendly
+✔ Visually explained
+✔ Technically solid
 
-✔ Teach beginners from scratch
-✔ Demonstrate real compiler logic
-✔ Showcase clean, professional implementation
-
-👉 A perfect blend of **learning + practical execution + portfolio impact**
+👉 Demonstrates both **concept clarity + implementation depth**, making it ideal for **academic + professional showcase**.
