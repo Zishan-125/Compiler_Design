@@ -20,7 +20,7 @@
 
 ## 📌 Overview
 
-This project implements a **Lexical Analyzer (Tokenizer)** — the first phase of a compiler — using Python and Regular Expressions.
+This project implements a **Lexical Analyzer (Tokenizer)**, the first phase of a compiler using Python and Regular Expressions.
 
 It processes raw source code and converts it into structured **tokens**, enabling further stages like parsing and semantic analysis.
 
