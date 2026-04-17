@@ -107,13 +107,20 @@ sequenceDiagram
 ## 🔄 Internal Code Execution Flow
 
 ```mermaid
-flowchart TD
-    A["input_string"] --> B["re.finditer()"]
-    B --> C[Match Found]
-    C --> D{Check Token Type}
-    D -->|Whitespace| E[Ignore]
-    D -->|Valid Token| F[Extract Value]
-    F --> G["Print Token + Type"]
+flowchart LR
+    A((Start)) -->|letter| B[Identifier State]
+    A -->|digit| C[Number State]
+    A -->|operator| D[Operator State]
+    A -->|;| E[Punctuation State]
+
+    B -->|letter/digit/_| B
+    B -->|other| F[Accept IDENTIFIER]
+
+    C -->|digit| C
+    C -->|other| G[Accept NUMBER]
+
+    D --> H[Accept OPERATOR]
+    E --> I[Accept PUNCTUATION]
 ```
 
 ---
