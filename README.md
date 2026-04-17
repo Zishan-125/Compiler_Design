@@ -160,17 +160,8 @@ int sum=10; and a+b= 20;
 ## 🚀 How to Run
 
 ```bash id="0hkgny"
-python tokenizer.py
+python Task_1.py
 ```
-
----
-
-## 📈 Future Enhancements
-
-* Support multi-character operators (`==`, `>=`)
-* Add string & comment recognition
-* Error handling for invalid tokens
-* Extend to **Syntax Analyzer (Parser)**
 
 ---
 
