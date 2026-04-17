@@ -216,8 +216,10 @@ python Task_1.py
 
 ## 👤 Author
 
-**Abdullah Al Mamun Zishan**
-🎓 CSE, Feni University
+**Abdullah Al Mamun Zishan**  
+🎓 CSE, Feni University  
+📚 Batch: CSE 31st (UG)  
+🆔 ID: 232031009  
 
 🔗 https://www.linkedin.com/in/abdullah-al-mamun-zishan-606550282
 
