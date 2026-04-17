@@ -108,12 +108,12 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-A[input_string] --> B[re.finditer()]
-B --> C[Match Found]
-C --> D{Check Token Type}
-D -->|Whitespace| E[Ignore]
-D -->|Valid Token| F[Extract Value]
-F --> G[Print Token + Type]
+    A["input_string"] --> B["re.finditer()"]
+    B --> C[Match Found]
+    C --> D{Check Token Type}
+    D -->|Whitespace| E[Ignore]
+    D -->|Valid Token| F[Extract Value]
+    F --> G["Print Token + Type"]
 ```
 
 ---
