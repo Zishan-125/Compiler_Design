@@ -20,9 +20,9 @@
 
 ## 📌 Overview
 
-This project implements a **Lexical Analyzer (Tokenizer)** — the first phase of a compiler — using Python and Regular Expressions.
+This project implements a **Lexical Analyzer (Tokenizer)** the first phase of a compiler using Python and Regular Expressions.
 
-It converts raw source code into structured **tokens**, forming the foundation for further stages like parsing and semantic analysis.
+It converts raw source code into structured **tokens**, forming the foundation for parsing and further compilation stages.
 
 ---
 
@@ -37,113 +37,127 @@ It converts raw source code into structured **tokens**, forming the foundation f
 
 ## 🧠 Beginner-Friendly Explanation (A → Z Guide)
 
-If someone is completely new to compiler design, this section explains everything step-by-step.
-
-### 🔹 Step 1: What is Input?
-
-A simple string of code:
+### Input Example:
 
 ```c
 int sum=10;
 ```
 
----
+### Output:
 
-### 🔹 Step 2: What is the Goal?
-
-Break this into meaningful pieces:
-
-👉 `int`, `sum`, `=`, `10`, `;`
-
-Each piece = **Token**
+`int | sum | = | 10 | ;`
 
 ---
 
-### 🔹 Step 3: How Does the Code Recognize Tokens?
+## 🎬 Step-by-Step Code Flow (Animated Understanding)
 
-Using **Regular Expressions (Regex)**:
+```mermaid
+sequenceDiagram
+    participant U as User Input
+    participant R as Regex Engine
+    participant M as Matcher Loop
+    participant O as Output
 
-```python
-('KEYWORD', r'\b(int|float|and|or|if|else|while)\b')
+    U->>R: "int sum=10;"
+    Note right of R: Apply Master Pattern
+    R->>M: Match "int"
+    M->>O: KEYWORD
+
+    R->>M: Match "sum"
+    M->>O: IDENTIFIER
+
+    R->>M: Match "="
+    M->>O: OPERATOR
+
+    R->>M: Match "10"
+    M->>O: NUMBER
+
+    R->>M: Match ";"
+    M->>O: PUNCTUATION
 ```
 
-✔ This means:
-
-* If a word matches `int`, `float`, etc → it is a **KEYWORD**
-
 ---
 
-### 🔹 Step 4: How All Rules Work Together?
+## 🔍 Internal Code Flow (Step-by-Step)
+
+### 1️⃣ Define Token Rules
 
 ```python
-master_pattern = '|'.join(f'(?P<{name}>{pattern})' for name, pattern in token_patterns)
+token_patterns = [...]
 ```
-
-👉 This line:
-
-* Combines all rules into **one powerful regex engine**
-* Uses **named groups** to identify token type instantly
 
 ---
 
-### 🔹 Step 5: How Scanning Happens?
+### 2️⃣ Combine into Master Pattern
 
 ```python
-for match in re.finditer(master_pattern, input_string):
+master_pattern = '|'.join(...)
 ```
-
-✔ The program:
-
-1. Scans left → right
-2. Matches patterns
-3. Detects token type
-4. Extracts value
 
 ---
 
-### 🔹 Step 6: Why Ignore Whitespace?
+### 3️⃣ Start Scanning
 
 ```python
-if token_type != 'WHITESPACE':
+re.finditer(master_pattern, input_string)
 ```
-
-👉 Spaces are not meaningful tokens
-👉 So they are skipped
 
 ---
 
-### 🔹 Step 7: Final Output
+### 4️⃣ Identify Token Type
 
 ```python
-print(f"{token_value:<15} | {token_type:<15}")
+match.lastgroup
 ```
-
-✔ Clean table format for readability
 
 ---
 
-## 🔄 Complete Workflow (Visual)
+### 5️⃣ Extract Token Value
+
+```python
+match.group(token_type)
+```
+
+---
+
+### 6️⃣ Ignore Whitespace
+
+```python
+if token_type != 'WHITESPACE'
+```
+
+---
+
+### 7️⃣ Print Output
+
+```python
+print(token, type)
+```
+
+---
+
+## 🔄 Workflow Diagram
 
 ```mermaid
 flowchart TD
-A[Input Code] --> B[Regex Matching]
-B --> C[Token Detection]
-C --> D[Ignore Spaces]
-D --> E[Classification]
-E --> F[Formatted Output]
+A[Input Code] --> B[Regex Engine]
+B --> C[Pattern Matching]
+C --> D[Token Extraction]
+D --> E[Ignore Spaces]
+E --> F[Final Output Table]
 ```
 
 ---
 
 ## 🧪 Example Execution
 
-### 🔹 Input
+### Input
 
 ```text
 int sum=10; and a+b= 20;
 ```
 
-### 🔹 Output
+### Output
 
 | Token | Type        |
 | ----- | ----------- |
@@ -162,28 +176,24 @@ int sum=10; and a+b= 20;
 
 ---
 
-## 🧠 Debugger’s Insight (Expert Perspective)
+## 🧠 Debugger’s Insight (Expert Level)
 
-From a **10+ years experienced tutor & debugging standpoint**:
-
-* ✔ Regex order matters (Keyword before Identifier)
-* ✔ Named groups simplify classification
-* ✔ `finditer()` ensures sequential scanning
-* ✔ Ignoring whitespace improves output clarity
-* ✔ Modular token patterns make system scalable
+* ✔ Regex priority matters (Keyword before Identifier)
+* ✔ Named groups improve readability & debugging
+* ✔ `finditer()` ensures sequential token detection
+* ✔ System is easily extendable
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Language:** Python
-* **Core Library:** re (Regular Expressions)
-* **Concept:** Lexical Analysis
-* **Domain:** Compiler Design
+* Python
+* Regular Expressions (`re`)
+* Compiler Design Concepts
 
 ---
 
-## 🚀 How to Run
+## 🚀 Run the Code
 
 ```bash
 python Task_1.py
@@ -202,10 +212,10 @@ python Task_1.py
 
 ## ⭐ Final Impression
 
-This project demonstrates:
+This project is designed to:
 
-* Strong understanding of compiler fundamentals
-* Practical implementation of lexical analysis
-* Clean, scalable and debuggable design
+✔ Teach beginners from scratch
+✔ Demonstrate real compiler logic
+✔ Showcase clean, professional implementation
 
-👉 Designed in a way that **even beginners can understand end-to-end execution**, while still reflecting **professional engineering standards**.
+👉 A perfect blend of **learning + practical execution + portfolio impact**
