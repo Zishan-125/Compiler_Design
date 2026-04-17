@@ -2,43 +2,50 @@
 
 ### *Lexical Analysis using Python (Regex-Based Tokenizer)*
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Build-Passing-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Version-1.0-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Language-Python-yellow?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Concept-Lexical_Analysis-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Domain-Compiler_Design-red?style=for-the-badge" />
+</p>
+
+---
+
+<p align="center">
+  <img src="https://media.giphy.com/media/coxQHKASG60HrHtvkt/giphy.gif" width="400"/>
+</p>
+
 ---
 
 ## 📌 Overview
 
-This project demonstrates the implementation of a **Lexical Analyzer (Tokenizer)** — the first phase of a compiler — using Python and Regular Expressions.
+This project implements a **Lexical Analyzer (Tokenizer)** — the first phase of a compiler — using Python and Regular Expressions.
 
-The system reads an input string and breaks it into meaningful **tokens**, classifying each based on predefined language rules.
+It processes raw source code and converts it into structured **tokens**, enabling further stages like parsing and semantic analysis.
 
 ---
 
-## 🎯 Objective
+## ⚡ Quick Glance (10-sec overview)
 
-* Convert raw source code into **tokens**
-* Classify tokens into categories such as:
-
-  * Keywords
-  * Identifiers
-  * Numbers
-  * Operators
-  * Punctuation
-* Simulate the **initial phase of a compiler pipeline**
+* 🔍 Converts source code → tokens
+* 🧠 Identifies keywords, identifiers, operators, numbers
+* ⚙️ Built using efficient regex-based pattern matching
+* 📚 Core foundation of compiler design
 
 ---
 
 ## 🧠 What is Lexical Analysis?
 
-Lexical Analysis is the process of:
+Lexical Analysis scans source code and transforms it into token sequences.
 
-> Scanning source code and converting it into a sequence of tokens for further compilation stages.
+### Example:
 
-Example:
-
-```c
+```c id="yfnptp"
 int sum = 10;
 ```
 
-⬇️ Transforms into:
+⬇️ Output:
 
 | Token | Type        |
 | ----- | ----------- |
@@ -50,13 +57,11 @@ int sum = 10;
 
 ---
 
-## ⚙️ Implementation Details
+## 🧩 Core Implementation
 
-### 🔹 Token Definitions
+### 🔹 Token Patterns
 
-The tokenizer uses **regular expressions** to define token patterns:
-
-```python
+```python id="r9q6pq"
 token_patterns = [
     ('KEYWORD',    r'\b(int|float|and|or|if|else|while)\b'),
     ('NUMBER',     r'\b\d+\b'),
@@ -69,56 +74,49 @@ token_patterns = [
 
 ---
 
-### 🔹 Master Pattern Construction
+### 🔹 Master Pattern
 
-All token patterns are combined into a **single regex expression** using named groups:
-
-```python
+```python id="vy56pw"
 master_pattern = '|'.join(f'(?P<{name}>{pattern})' for name, pattern in token_patterns)
 ```
 
-✔ This allows:
-
-* Efficient scanning
-* Direct identification of token type
+✔ Combines all token rules into one optimized regex
 
 ---
 
-### 🔹 Tokenization Process
+### 🔹 Tokenization Logic
 
-```python
+```python id="9p2rd7"
 for match in re.finditer(master_pattern, input_string):
 ```
 
 Steps:
 
-1. Scan input string sequentially
-2. Match patterns using regex
-3. Identify token type via `match.lastgroup`
-4. Extract token value
-5. Ignore whitespace
-6. Print structured output
+1. Scan input sequentially
+2. Match patterns
+3. Identify token type
+4. Ignore whitespace
+5. Output structured result
 
 ---
 
-## 🔄 Workflow (Step-by-Step)
+## 🔄 Workflow
 
-```mermaid
+```mermaid id="bzbk2l"
 flowchart TD
-A[Input Source Code] --> B[Regex Pattern Matching]
-B --> C[Token Identification]
-C --> D[Ignore Whitespace]
-D --> E[Classify Token Type]
-E --> F[Display Output Table]
+A[Input Source Code] --> B[Regex Matching]
+B --> C[Token Detection]
+C --> D[Classification]
+D --> E[Output Tokens]
 ```
 
 ---
 
-## 🧪 Example Run
+## 🧪 Example Execution
 
 ### 🔹 Input
 
-```text
+```text id="h6xv3g"
 int sum=10; and a+b= 20;
 ```
 
@@ -144,23 +142,24 @@ int sum=10; and a+b= 20;
 ## 🛠️ Tech Stack
 
 * **Language:** Python
-* **Core Concept:** Regular Expressions (`re` module)
+* **Core Library:** re (Regular Expressions)
+* **Concept:** Lexical Analysis
 * **Domain:** Compiler Design
 
 ---
 
-## 💡 Key Highlights
+## 💡 Key Strengths
 
-* ✔ Efficient token classification using regex
-* ✔ Clean modular design
-* ✔ Demonstrates core compiler fundamentals
-* ✔ Scalable for future compiler phases (Parsing, Syntax Analysis)
+* ✔ Efficient pattern matching
+* ✔ Clean and modular logic
+* ✔ Strong foundation in compiler design
+* ✔ Easily extendable for parser integration
 
 ---
 
 ## 🚀 How to Run
 
-```bash
+```bash id="0hkgny"
 python tokenizer.py
 ```
 
@@ -168,13 +167,10 @@ python tokenizer.py
 
 ## 📈 Future Enhancements
 
-* Support for:
-
-  * String literals
-  * Comments
-  * Multi-character operators (`==`, `<=`, etc.)
+* Support multi-character operators (`==`, `>=`)
+* Add string & comment recognition
 * Error handling for invalid tokens
-* Integration with **syntax analyzer (parser)**
+* Extend to **Syntax Analyzer (Parser)**
 
 ---
 
@@ -183,14 +179,16 @@ python tokenizer.py
 **Abdullah Al Mamun Zishan**
 🎓 CSE, Feni University
 
+🔗 LinkedIn: https://www.linkedin.com/in/abdullah-al-mamun-zishan-606550282
+
 ---
 
-## ⭐ Final Note
+## ⭐ Final Impression
 
-This project reflects a strong understanding of:
+This project demonstrates a solid understanding of:
 
 * Compiler fundamentals
-* Pattern matching
-* Language processing techniques
+* Pattern matching techniques
+* Language processing systems
 
-A solid foundation for building **full-scale compilers and interpreters**.
+A strong stepping stone toward building **full compiler architectures**.
