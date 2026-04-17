@@ -13,7 +13,11 @@
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/coxQHKASG60HrHtvkt/giphy.gif" width="400"/>
+  <img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" width="400"/>
+</p>
+
+<p align="center">
+  ⚙️ Lexical Analyzer in Action — Tokenizing Source Code into Meaningful Units
 </p>
 
 ---
